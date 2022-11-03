@@ -1,9 +1,7 @@
-﻿
-using BlazorSQLBd.Data.Services;
+﻿using BlazorSQLBd.Data.Services;
 using BlazorSQLBd.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
 
 namespace BlazorSQLBd
 {
@@ -17,7 +15,6 @@ namespace BlazorSQLBd
             Configure(app);
             return app;
         }
-
         public static IConfiguration? Configuration { get; }
         private static void ConfigureServices(WebApplicationBuilder builder)
         {
@@ -41,7 +38,7 @@ namespace BlazorSQLBd
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see <https://aka.ms/aspnetcore-hsts>.
                 app.UseHsts();
 
             }
@@ -61,6 +58,3 @@ namespace BlazorSQLBd
 
     }
 }
-
-
-
