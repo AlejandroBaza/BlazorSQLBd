@@ -24,7 +24,7 @@ namespace BlazorSQLBd
 
             //configurar cadena de conexion
             builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("mi_conexion")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("mi_conexion")));
 
             //servicio de configuracion
             builder.Services.AddScoped<IEmpleadosService, EmpleadosService>();
