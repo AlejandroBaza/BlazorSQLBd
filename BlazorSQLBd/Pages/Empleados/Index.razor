@@ -1,0 +1,71 @@
+﻿@page "/empleados"
+<!--Llamamos el model empleados-->
+@using BlazorSQLBd.Models;
+<!--Llamamos los servicios-->
+@using BlazorSQLBd.Data.Services
+<!--Inyectamos los servicios-->
+@inject IEmpleadosService EmpleadosService
+
+<h3>Listado de empleados</h3>
+<div class="row">
+    @if (ListaEmpleados.Count > 0)
+    {
+        <table id="tbEmpleados" class="table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <!--Encabezado de la lista-->
+                    <th>ID</th>
+                    <th>Folio</th>
+                    <th>Ingreso</th>
+                    <th>Status</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Departamento</th>
+                    <th>Funcion</th>
+                    <th>Baja</th>
+                    <th>Sueldo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ListaEmpleados)
+                {
+                    <tr>
+                        <td>@item.IntId</td>
+                        <td>@item.IntFolio</td>
+                        <td>@item.DatIngreso</td>
+                        <td>@item.StrStatus</td>
+                        <td>@item.StrNombre</td>
+                        <td>@item.StrApellido</td>
+                        <td>@item.StrEmail</td>
+                        <td>@item.StrDepartamento</td>
+                        <td>@item.StrFuncion</td>
+                        <td>@item.DatBaja</td>
+                        <td>@item.IntSueldo</td>
+                        <td>
+                            <a class="btn btn-primary mr-2" href="#">Editar</a>
+                            <a class="btn btn-danger mr-2" href="#">Borrar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <div class="text-center">
+            <h3 class="alert-danger">No existen registros</h3>
+        </div>
+    }
+</div>
+
+@code{
+    private List<Empleado> ListaEmpleados = new List<Empleado>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        ListaEmpleados = await EmpleadosService.ObtenerTodos();
+    }
+}
